@@ -1,19 +1,29 @@
 #!/usr/bin/python3
-"""This module defines a Pascal's Triangle function"""
+"""This module defines a class Student"""
 
 
-def pascal_triangle(n):
-    """Represents Pascal's Triangle of size n
-    """
-    if n <= 0:
-        return []
+class Student:
+    """Represent a student."""
 
-    triangles = [[1]]
-    while len(triangles) != n:
-        tri = triangles[-1]
-        tmp = [1]
-        for i in range(len(tri) - 1):
-            tmp.append(tri[i] + tri[i + 1])
-        tmp.append(1)
-        triangles.append(tmp)
-    return triangles
+    def __init__(self, first_name, last_name, age):
+        """Initializes a new Student
+        """
+        self.first_name = first_name
+        self.last_name = last_name
+        self.age = age
+
+    def to_json(self, attrs=None):
+        """Gets a dictionary representation of the Student.
+        If attrs is a list of strings, represents only those attributes
+        included in the list
+        """
+        if (type(attrs) == list and
+                all(type(ele) == str for ele in attrs)):
+            return {k: getattr(self, k) for k in attrs if hasattr(self, k)}
+        return self.__dict__
+
+    def reload_from_json(self, json):
+        """Replaces all attributes of the Student
+        """
+        for k, v in json.items():
+            setattr(self, k, v)
