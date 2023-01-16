@@ -395,8 +395,6 @@ class TestRectangle_y(unittest.TestCase):
     def test_negative_y(self):
         with self.assertRaisesRegex(ValueError, "y must be >= 0"):
             Rectangle(3, 5, 0, -1)
-
-
 class TestRectangle_order_of_initialization(unittest.TestCase):
     """Unittests for testing Rectangle order of attribute initialization."""
 
@@ -687,6 +685,7 @@ class TestRectangle_update_kwargs(unittest.TestCase):
         r = Rectangle(10, 10, 10, 10, 10)
         r.update(width=2, height=3, id=89)
         self.assertEqual("[Rectangle] (89) 10/10 - 2/3", str(r))
+
     def test_update_kwargs_four(self):
         r = Rectangle(10, 10, 10, 10, 10)
         r.update(id=89, x=1, height=2, y=3, width=4)
