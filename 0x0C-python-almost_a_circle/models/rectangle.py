@@ -170,3 +170,4 @@ class Rectangle(Base):
         """
         return {'x': getattr(self, "x"), 'y': getattr(self, "y"),
                 'id': getattr(self, "id"), 'height': getattr(self, "height"),
+                'width': getattr(self, "width")}
